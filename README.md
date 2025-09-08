@@ -1,7 +1,8 @@
 # ArubaCX Support in netbox-orb
 
-This is a bit hacky approach of supporting ArubaCX latest devices, but for sure it works perfectly. All you need is to spin latest docker.io/netboxlabs/orb-agent:develop docker image and replace files in
-/usr/local/lib/python3.12/site-packages/napalm with this repository files. There are no prebuild docker image, so you have to do it yourself. Then in agent.yml config use "driver: aoscx_v2".
+This is a bit hacky approach of supporting **ArubaCX** latest devices, but for sure it works perfectly. All you need is to spin latest **docker.io/netboxlabs/orb-agent:develop** docker image and replace 
+files in
+**/usr/local/lib/python3.12/site-packages/napalm** with this repository files. There are no prebuild docker image yet, so you have to do it yourself. Then in agent.yml config use "driver: aoscx_v2".
 
 ```
 mv device_discovery/discovery.py /usr/local/lib/python3.12/site-packages/device_discovery/discovery.py
