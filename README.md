@@ -39,3 +39,20 @@ services:
 ```
 
 BTW put these files in /srv/dockers/netbox-orb
+
+# Test
+
+```
+python3 - <<'PY'
+from napalm import get_network_driver
+D = get_network_driver("aoscx_v2")
+d = D("192.168.1.20","admin","admin", optional_args={"api_version":"auto","verify":False})
+d.open()
+print("facts ok:", d.get_facts()["uptime"] >= 0)
+print("vlans types:", [(k, type(k).__name__) for k in list(d.get_vlans().keys())[:10]])
+ifs = d.get_interfaces()
+print("iface numeric:", all(isinstance(v["speed"], float) for v in ifs.values()))
+print("counters ints:", all(isinstance(x,int) for v in d.get_interfaces_counters().values() for x in v.values()))
+d.close()
+PY
+```
